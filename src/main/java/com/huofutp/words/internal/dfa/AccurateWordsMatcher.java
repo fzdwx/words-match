@@ -1,13 +1,12 @@
 package com.huofutp.words.internal.dfa;
 
 
-import cn.hutool.core.util.StrUtil;
-import com.huofutp.common.function.Func;
-import com.huofutp.common.function.core.Kv;
 import com.huofutp.words.WordsMatcher;
+import com.huofutp.words.lambada.Tuple;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,12 +21,12 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
     private final Map<Character, DfaNode> nodes;
 
     private AccurateWordsMatcher(final Collection<String> words) {
-        this.nodes = Func.mapOf();
+        this.nodes = new HashMap<>();
         words.forEach(this::put);
     }
 
     private AccurateWordsMatcher(final String words) {
-        this.nodes = Func.mapOf();
+        this.nodes = new HashMap<>();
         this.put(words);
     }
 
@@ -41,11 +40,11 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public boolean process(final boolean partMatch, String content, final Handler handle) {
-        if (StrUtil.isEmpty(content)) {
+        if (org.apache.commons.lang3.StringUtils.isEmpty(content)) {
             return false;
         }
 
-        content = StrUtil.trim(content);
+        content = org.apache.commons.lang3.StringUtils.trim(content);
         final int contentSize = content.length();
         if (contentSize < 2) { // 单字符不支持
             return false;
@@ -73,12 +72,12 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
                 }
 
                 if (partMatch && node.isWord()) {
-                    if (handle.apply(Kv.create(node.source(), StringUtils.substring(content, index, index + charCount)))) {
+                    if (handle.apply(Tuple.of(node.source(), StringUtils.substring(content, index, index + charCount)))) {
                         return true;
                     }
                     break;
                 } else if (node.isWord()) {
-                    if (handle.apply(Kv.create(node.source(), StringUtils.substring(content, index, index + charCount)))) {
+                    if (handle.apply(Tuple.of(node.source(), StringUtils.substring(content, index, index + charCount)))) {
                         return true;
                     }
                 }
@@ -98,11 +97,11 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public boolean put(String word) {
-        if (StrUtil.isEmpty(word)) {
+        if (StringUtils.isEmpty(word)) {
             return false;
         }
 
-        word = StrUtil.trim(word);
+        word = StringUtils.trim(word);
         if (word.length() < 2) { // 单字符不支持
             return false;
         }

@@ -1,13 +1,12 @@
 package com.huofutp.words.internal.dfa;
 
 
-import cn.hutool.core.util.StrUtil;
-import com.huofutp.common.function.core.Kv;
 import com.huofutp.words.WordsMatcher;
+import com.huofutp.words.lambada.Tuple;
 import org.apache.commons.lang3.StringUtils;
-import com.huofutp.common.function.Func;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -30,14 +29,14 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     private final Map<Character, DfaNode> enNodes;
 
     private FuzzWordsMatcher(final Collection<String> words) {
-        this.zhNodes = Func.mapOf();
-        this.enNodes = Func.mapOf();
+        this.zhNodes = new HashMap<>();
+        this.enNodes = new HashMap<>();
         words.forEach(this::put);
     }
 
     private FuzzWordsMatcher(final String word) {
-        this.zhNodes = Func.mapOf();
-        this.enNodes = Func.mapOf();
+        this.zhNodes = new HashMap<>();
+        this.enNodes = new HashMap<>();
         this.put(word);
     }
 
@@ -51,11 +50,11 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public boolean process(final boolean partMatch, String content, final Handler handle) {
-        if (StrUtil.isEmpty(content)) {
+        if (StringUtils.isEmpty(content)) {
             return false;
         }
 
-        content = StrUtil.trim(content);
+        content = StringUtils.trim(content);
         final int contentSize = content.length();
         if (contentSize < 2) { // 单字符不支持
             return false;
@@ -68,7 +67,7 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
             if (node == null || node.isLeaf()) {
                 continue;
             }
-            
+
             // 源文本中匹配敏感词位置
             int charCount = 1;
 
@@ -96,12 +95,12 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
                 }
 
                 if (partMatch && node.isWord()) {
-                    if (handle.apply(Kv.create(node.source(), StringUtils.substring(content, index, index + charCount)))) {
+                    if (handle.apply(Tuple.of(node.source(), StringUtils.substring(content, index, index + charCount)))) {
                         return true;
                     }
                     break;
                 } else if (node.isWord()) {
-                    if (handle.apply(Kv.create(node.source(), StringUtils.substring(content, index, index + charCount)))) {
+                    if (handle.apply(Tuple.of(node.source(), StringUtils.substring(content, index, index + charCount)))) {
                         return true;
                     }
                 }
@@ -121,11 +120,11 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public boolean put(String word) {
-        if (StrUtil.isEmpty(word)) {
+        if (StringUtils.isEmpty(word)) {
             return false;
         }
 
-        word = StrUtil.trim(word);
+        word = StringUtils.trim(word);
         if (word.length() < 2) { // 单字符不支持
             return false;
         }

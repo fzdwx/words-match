@@ -1,8 +1,8 @@
 package com.huofutp.words.internal.dfa;
 
-import com.huofutp.common.function.core.Tuple2;
-import com.huofutp.common.function.seq.Seq;
 import com.huofutp.words.WordsMatcher;
+import com.huofutp.words.lambada.internal.Tuple2;
+import com.huofutp.words.lambada.Seq;
 
 import java.util.Collection;
 import java.util.List;

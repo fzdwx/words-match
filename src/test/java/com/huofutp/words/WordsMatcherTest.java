@@ -1,10 +1,10 @@
 package com.huofutp.words;
 
-import com.huofutp.common.function.Func;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -13,24 +13,26 @@ import java.util.Map;
  */
 class WordsMatcherTest {
 
-    private static Collection<String> words = Func.setOf(
-            "中国人",
-            "中国男人",
-            "中国人民",
-            "人民",
-            "中间",
-            "女人",
-            "一举",
-            "一举成名",
-            "一举成名走四方",
-            "成名",
-            "走四方",
-            "zzz",
-            "hello",
-            "Qwe",
-            "你好aa",
-            "qweFJAKf"
-    );
+    private static Collection<String> words = new HashSet<String>() {
+        {
+            add("中国人");
+            add("中国男人");
+            add("中国人民");
+            add("人民");
+            add("中间");
+            add("女人");
+            add("一举");
+            add("一举成名");
+            add("一举成名走四方");
+            add("成名");
+            add("走四方");
+            add("zzz");
+            add("hello");
+            add("Qwe");
+            add("你好aa");
+            add("qweFJAKf");
+        }
+    };
     final String content = "中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf";
     final WordsMatcher fuzz = WordsMatcher.fuzz(words);
     final WordsMatcher accurate = WordsMatcher.accurate(words);
@@ -48,7 +50,6 @@ class WordsMatcherTest {
         final WordsAction action = this.mixed.action(this.content);
 
         final Map<String, String> all = action.findAll();
-        System.out.println(all);
         this.assertAccurate(all);
         this.assertFuzz(all);
     }

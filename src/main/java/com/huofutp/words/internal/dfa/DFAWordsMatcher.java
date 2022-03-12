@@ -1,8 +1,8 @@
 package com.huofutp.words.internal.dfa;
 
 import com.huofutp.words.WordsMatcher;
-import com.huofutp.common.function.Func;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -41,7 +41,7 @@ public interface DFAWordsMatcher extends WordsMatcher {
     class DfaNode {
 
         private final int type;
-        private final Map<Character, DfaNode> childes = Func.mapOf();
+        private final Map<Character, DfaNode> childes = new HashMap<>();
         private final char _char;
         // private DfaNode parent;
         private boolean word;

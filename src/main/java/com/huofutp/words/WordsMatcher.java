@@ -1,11 +1,10 @@
 package com.huofutp.words;
 
 
-import cn.hutool.core.util.CharUtil;
-import com.huofutp.common.function.core.Kv;
 import com.huofutp.words.internal.dfa.AccurateWordsMatcher;
 import com.huofutp.words.internal.dfa.FuzzWordsMatcher;
 import com.huofutp.words.internal.dfa.MixWordsMatcher;
+import com.huofutp.words.lambada.internal.Tuple2;
 
 import java.util.Collection;
 import java.util.function.Function;
@@ -114,7 +113,7 @@ public interface WordsMatcher {
      * @return true表示为字母（包括大写字母和小写字母）字母包括A~Z和a~z
      */
     default boolean isLetter(final char ch) {
-        return CharUtil.isLetter(ch);
+        return isLetterUpper(ch) || isLetterLower(ch);
     }
 
     default boolean hasChAndEn(final String word) {
@@ -132,6 +131,14 @@ public interface WordsMatcher {
         return havaCh && havaEn;
     }
 
+    static boolean isLetterUpper(final char ch) {
+        return ch >= 'A' && ch <= 'Z';
+    }
+
+    static boolean isLetterLower(final char ch) {
+        return ch >= 'a' && ch <= 'z';
+    }
+
     static char toLowerCase(final char ch) {
         return Character.toLowerCase(ch);
     }
@@ -144,7 +151,7 @@ public interface WordsMatcher {
      *     boolean: 是否继续匹配
      * </pre>
      */
-    interface Handler extends Function<Kv<String, String>, Boolean> {
+    interface Handler extends Function<Tuple2<String, String>, Boolean> {
 
     }
 }

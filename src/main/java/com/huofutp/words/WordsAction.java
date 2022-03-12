@@ -1,9 +1,9 @@
 package com.huofutp.words;
 
 import com.google.common.base.Strings;
-import com.huofutp.common.function.Func;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
@@ -175,10 +175,10 @@ public class WordsAction {
 
     private void init() {
         if (this.hintWords == null) {
-            this.hintWords = Func.mapOf();
+            this.hintWords = new HashMap<>();
 
             this.mapper.apply(kv -> {
-                this.hintWords.put(kv.getKey(), kv.getValue());
+                this.hintWords.put(kv.v1, kv.v2);
                 return false;
             });
 
