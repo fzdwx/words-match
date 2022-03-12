@@ -70,7 +70,7 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public void refresh(final Collection<String> words) {
+    public WordsMatcher refresh(final Collection<String> words) {
         final Tuple2<List<String>, List<String>> tuple = this.divert(words);
 
         final List<String> v1 = tuple.v1;
@@ -86,6 +86,8 @@ public class MixWordsMatcher implements DFAWordsMatcher {
         } else {
             this.fuzz = null;
         }
+
+        return this;
     }
 
     private Tuple2<List<String>, List<String>> divert(final Collection<String> words) {

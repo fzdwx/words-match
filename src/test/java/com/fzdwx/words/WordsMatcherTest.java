@@ -1,6 +1,7 @@
 package com.fzdwx.words;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
@@ -32,6 +33,7 @@ class WordsMatcherTest {
             add("你好aa");
             add("qweFJAKf");
             add("hhhasd");
+            add("QWE");
         }
     };
     final String content = "中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf,h1...h1h1a1S1D";
@@ -47,10 +49,26 @@ class WordsMatcherTest {
 
     @Test
     void testReplace() {
-        final WordsAction action = mixed.action(content);
+        final WordsMatcher fuzz = WordsMatcher.fuzz(
+                "中国人"
+        );
+        String content = "中国人民";
+        final WordsAction action = fuzz.action(content);
+        Assertions.assertEquals(action.replace('草'), "草草草民");
+        Assertions.assertEquals(action.rawContent(), content);
+    }
+
+    @Test
+    @DisplayName("测试替换方法")
+    void testReplace2() {
+        //  stringUtil replace 不能替换带*的字符
+        //  word: hello
+        //  matchWord: he*l l.o
+        //  content: 中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf,h1...h1h1a1S1D
+        final WordsAction action = WordsMatcher.fuzz("hello").action(this.content);
+
         final String replace = action.replace('草');
 
-        System.out.println(action.findAll());
         System.out.println(replace);
     }
 

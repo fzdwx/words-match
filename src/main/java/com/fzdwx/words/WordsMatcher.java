@@ -6,6 +6,7 @@ import com.fzdwx.words.internal.dfa.FuzzWordsMatcher;
 import com.fzdwx.words.internal.dfa.MixWordsMatcher;
 import com.fzdwx.words.lambada.internal.Tuple2;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Function;
 
@@ -24,8 +25,16 @@ public interface WordsMatcher {
         return AccurateWordsMatcher.create(words);
     }
 
+    static WordsMatcher accurate(String... words) {
+        return AccurateWordsMatcher.create(Arrays.asList(words));
+    }
+
     static WordsMatcher accurate(final String word) {
         return AccurateWordsMatcher.create(word);
+    }
+
+    static WordsMatcher fuzz(String... words) {
+        return FuzzWordsMatcher.create(Arrays.asList(words));
     }
 
     static WordsMatcher fuzz(final Collection<String> words) {
@@ -38,6 +47,10 @@ public interface WordsMatcher {
 
     static WordsMatcher mixed(final Collection<String> words) {
         return MixWordsMatcher.create(words);
+    }
+
+    static WordsMatcher mixed(final String... words) {
+        return MixWordsMatcher.create(Arrays.asList(words));
     }
 
     /**
@@ -64,7 +77,7 @@ public interface WordsMatcher {
      *
      * @param words 新敏感词组
      */
-    void refresh(Collection<String> words);
+    WordsMatcher refresh(Collection<String> words);
 
     /**
      * 细粒度

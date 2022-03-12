@@ -67,4 +67,7 @@ final Map<String, String> all=action.findAll();
 
 - [ ] 简体繁体
 - [ ] 半角圆角
+- [ ] 若一个word在content中匹配到了多次,如何保存?
+    - 现在是覆盖,保留最后一个
+- [ ] replace 方法不能替换*
 - [ ] more

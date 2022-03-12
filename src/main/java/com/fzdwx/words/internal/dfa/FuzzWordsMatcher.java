@@ -152,10 +152,12 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public void refresh(final Collection<String> words) {
+    public WordsMatcher refresh(final Collection<String> words) {
         this.zhNodes.clear();
         this.enNodes.clear();
         words.forEach(this::put);
+
+        return this;
     }
 
     private DfaNode getNode(final char firstChar) {

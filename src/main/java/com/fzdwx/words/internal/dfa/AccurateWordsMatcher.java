@@ -119,8 +119,10 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public void refresh(final Collection<String> words) {
+    public WordsMatcher refresh(final Collection<String> words) {
         this.nodes.clear();
         words.forEach(this::put);
+
+        return this;
     }
 }

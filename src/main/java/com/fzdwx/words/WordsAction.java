@@ -1,9 +1,11 @@
 package com.fzdwx.words;
 
 import com.google.common.base.Strings;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
@@ -74,6 +76,7 @@ public class WordsAction {
     public String replace(final char replaceChar) {
         this.init();
         String content = this.content;
+        final String replaceCharStr = String.valueOf(replaceChar);
 
         for (final String word : this.matchHintWords) {
             content = content.replaceAll(word, Strings.repeat(String.valueOf(replaceChar), word.length()));
@@ -175,7 +178,7 @@ public class WordsAction {
 
     private void init() {
         if (this.hintWords == null) {
-            this.hintWords = new HashMap<>();
+            this.hintWords = new LinkedHashMap<>();
 
             this.mapper.apply(kv -> {
                 this.hintWords.put(kv.v1, kv.v2);
