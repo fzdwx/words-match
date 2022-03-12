@@ -33,7 +33,6 @@ class WordsMatcherTest {
             add("你好aa");
             add("qweFJAKf");
             add("hhhasd");
-            add("QWE");
         }
     };
     final String content = "中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf,h1...h1h1a1S1D";
