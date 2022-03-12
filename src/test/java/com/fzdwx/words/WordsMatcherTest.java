@@ -69,7 +69,7 @@ class WordsMatcherTest {
 
         final String replace = action.replace('草');
 
-        System.out.println(replace);
+        Assertions.assertTrue(replace.contains("草草草草草草草草"));
     }
 
     @Test

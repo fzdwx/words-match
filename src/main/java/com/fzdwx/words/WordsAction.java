@@ -79,7 +79,7 @@ public class WordsAction {
         final String replaceCharStr = String.valueOf(replaceChar);
 
         for (final String word : this.matchHintWords) {
-            content = content.replaceAll(word, Strings.repeat(String.valueOf(replaceChar), word.length()));
+            content = StringUtils.replace(content, word, Strings.repeat(replaceCharStr, word.length()));
         }
 
         return content;
