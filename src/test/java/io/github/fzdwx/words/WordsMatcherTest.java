@@ -1,4 +1,4 @@
-package com.github.fzdwx.words;
+package io.github.fzdwx.words;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

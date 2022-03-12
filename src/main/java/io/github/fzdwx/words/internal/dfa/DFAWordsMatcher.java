@@ -1,6 +1,6 @@
-package com.github.fzdwx.words.internal.dfa;
+package io.github.fzdwx.words.internal.dfa;
 
-import com.github.fzdwx.words.WordsMatcher;
+import io.github.fzdwx.words.WordsMatcher;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
-package com.github.fzdwx.lambada.internal;
+package io.github.fzdwx.lambada.internal;
 
-import com.github.fzdwx.lambada.Seq;
+import io.github.fzdwx.lambada.Seq;
 
 import java.util.Comparator;
 import java.util.Iterator;

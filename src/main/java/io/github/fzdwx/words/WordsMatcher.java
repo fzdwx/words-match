@@ -1,10 +1,10 @@
-package com.github.fzdwx.words;
+package io.github.fzdwx.words;
 
 
-import com.github.fzdwx.lambada.internal.Tuple2;
-import com.github.fzdwx.words.internal.dfa.AccurateWordsMatcher;
-import com.github.fzdwx.words.internal.dfa.FuzzWordsMatcher;
-import com.github.fzdwx.words.internal.dfa.MixWordsMatcher;
+import io.github.fzdwx.lambada.internal.Tuple2;
+import io.github.fzdwx.words.internal.dfa.AccurateWordsMatcher;
+import io.github.fzdwx.words.internal.dfa.FuzzWordsMatcher;
+import io.github.fzdwx.words.internal.dfa.MixWordsMatcher;
 
 import java.util.Arrays;
 import java.util.Collection;

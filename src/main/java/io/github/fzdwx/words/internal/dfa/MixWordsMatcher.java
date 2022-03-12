@@ -1,8 +1,8 @@
-package com.github.fzdwx.words.internal.dfa;
+package io.github.fzdwx.words.internal.dfa;
 
-import com.github.fzdwx.lambada.Seq;
-import com.github.fzdwx.lambada.internal.Tuple2;
-import com.github.fzdwx.words.WordsMatcher;
+import io.github.fzdwx.lambada.Seq;
+import io.github.fzdwx.lambada.internal.Tuple2;
+import io.github.fzdwx.words.WordsMatcher;
 
 import java.util.ArrayList;
 import java.util.Collection;
