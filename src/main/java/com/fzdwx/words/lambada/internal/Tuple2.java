@@ -1,6 +1,6 @@
-package com.huofutp.words.lambada.internal;
+package com.fzdwx.words.lambada.internal;
 
-import com.huofutp.words.lambada.Tuple;
+import com.fzdwx.words.lambada.Tuple;
 
 /**
  *

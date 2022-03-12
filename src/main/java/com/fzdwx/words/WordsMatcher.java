@@ -1,10 +1,10 @@
-package com.huofutp.words;
+package com.fzdwx.words;
 
 
-import com.huofutp.words.internal.dfa.AccurateWordsMatcher;
-import com.huofutp.words.internal.dfa.FuzzWordsMatcher;
-import com.huofutp.words.internal.dfa.MixWordsMatcher;
-import com.huofutp.words.lambada.internal.Tuple2;
+import com.fzdwx.words.internal.dfa.AccurateWordsMatcher;
+import com.fzdwx.words.internal.dfa.FuzzWordsMatcher;
+import com.fzdwx.words.internal.dfa.MixWordsMatcher;
+import com.fzdwx.words.lambada.internal.Tuple2;
 
 import java.util.Collection;
 import java.util.function.Function;

@@ -1,8 +1,8 @@
-package com.huofutp.words.internal.dfa;
+package com.fzdwx.words.internal.dfa;
 
 
-import com.huofutp.words.WordsMatcher;
-import com.huofutp.words.lambada.Tuple;
+import com.fzdwx.words.WordsMatcher;
+import com.fzdwx.words.lambada.Tuple;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;

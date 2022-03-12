@@ -1,7 +1,7 @@
-package com.huofutp.words.lambada;
+package com.fzdwx.words.lambada;
 
-import com.huofutp.words.lambada.internal.SeqImpl;
-import com.huofutp.words.lambada.internal.Tuple2;
+import com.fzdwx.words.lambada.internal.SeqImpl;
+import com.fzdwx.words.lambada.internal.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;

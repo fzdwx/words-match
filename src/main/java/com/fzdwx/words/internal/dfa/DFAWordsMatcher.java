@@ -1,6 +1,6 @@
-package com.huofutp.words.internal.dfa;
+package com.fzdwx.words.internal.dfa;
 
-import com.huofutp.words.WordsMatcher;
+import com.fzdwx.words.WordsMatcher;
 
 import java.util.HashMap;
 import java.util.Map;

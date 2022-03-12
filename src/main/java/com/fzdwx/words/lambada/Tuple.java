@@ -1,6 +1,6 @@
-package com.huofutp.words.lambada;
+package com.fzdwx.words.lambada;
 
-import com.huofutp.words.lambada.internal.Tuple2;
+import com.fzdwx.words.lambada.internal.Tuple2;
 
 /**
  * @author <a href="mailto:likelovec@gmail.com">韦朕</a>

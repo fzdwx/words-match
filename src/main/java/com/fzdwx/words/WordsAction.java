@@ -1,4 +1,4 @@
-package com.huofutp.words;
+package com.fzdwx.words;
 
 import com.google.common.base.Strings;
 

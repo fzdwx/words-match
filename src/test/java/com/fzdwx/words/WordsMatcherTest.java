@@ -1,4 +1,4 @@
-package com.huofutp.words;
+package com.fzdwx.words;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
