@@ -52,6 +52,13 @@ class WordsMatcherTest {
         Assertions.assertFalse(a2.match());
         Assertions.assertTrue(fuzz.put("我草你的"));
         Assertions.assertTrue(a2.match());
+        Assertions.assertFalse(fuzz.put(null));
+
+        Assertions.assertTrue(accurate.put("我草你的"));
+        Assertions.assertFalse(accurate.put(null));
+
+        Assertions.assertTrue(mixed.put("我草你的"));
+        Assertions.assertFalse(mixed.put(null));
     }
 
     @Test
