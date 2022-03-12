@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
@@ -178,7 +177,7 @@ public class WordsAction {
 
     private void init() {
         if (this.hintWords == null) {
-            this.hintWords = new LinkedHashMap<>();
+            this.hintWords = new LinkedHashMap<>(); // 保证是有序的
 
             this.mapper.apply(kv -> {
                 this.hintWords.put(kv.v1, kv.v2);

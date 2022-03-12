@@ -63,6 +63,8 @@ final WordsAction action=this.accurate.action(this.content);
 final Map<String, String> all=action.findAll();
 ```
 
+[more](https://github.com/fzdwx/words-match/blob/master/src/test/java/com/fzdwx/words/WordsMatcherTest.java#L44)
+
 ## todo
 
 - [ ] 简体繁体
