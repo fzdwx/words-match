@@ -62,3 +62,9 @@ final WordsMatcher accurate=WordsMatcher.accurate(words);
 final WordsAction action=this.accurate.action(this.content);
 final Map<String, String> all=action.findAll();
 ```
+
+## todo
+
+- [ ] 简体繁体
+- [ ] 半角圆角
+- [ ] more
