@@ -31,9 +31,10 @@ class WordsMatcherTest {
             add("Qwe");
             add("你好aa");
             add("qweFJAKf");
+            add("hhhasd");
         }
     };
-    final String content = "中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf";
+    final String content = "中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf,h1...h1h1a1S1D";
     final WordsMatcher fuzz = WordsMatcher.fuzz(words);
     final WordsMatcher accurate = WordsMatcher.accurate(words);
     final WordsMatcher mixed = WordsMatcher.mixed(words);
@@ -82,5 +83,6 @@ class WordsMatcherTest {
         Assertions.assertTrue(all.containsKey("人民"));
         Assertions.assertTrue(all.containsKey("Qwe"));
         Assertions.assertTrue(all.containsKey("qweFJAKf"));
+        Assertions.assertTrue(all.containsKey("hhhasd"));
     }
 }
