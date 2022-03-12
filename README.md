@@ -27,7 +27,7 @@ word: qweFJAKf
     content: qWefJAkf -> true
 ```
 
-3.mix[MixWordsMatcher](https://github.com/fzdwx/words-match/blob/f0b47ae55372566dc89995d7df5b8a5853d4774d/src/main/java/com/huofutp/words/internal/dfa/MixWordsMatcher.java)
+3.[MixWordsMatcher](https://github.com/fzdwx/words-match/blob/f0b47ae55372566dc89995d7df5b8a5853d4774d/src/main/java/com/huofutp/words/internal/dfa/MixWordsMatcher.java)
 
 - 精确和模糊结合
 
