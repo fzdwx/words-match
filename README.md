@@ -59,6 +59,6 @@ word: qweFJAKf
 final String content="中1国1人,民,一zzz举,he*l l.oQWE你好aa  qWefJAkf,h1...h1h1a1S1D";
 
 final WordsMatcher accurate=WordsMatcher.accurate(words);
-final WordsAction action=this.mixed.action(this.content);
+final WordsAction action=this.accurate.action(this.content);
 final Map<String, String> all=action.findAll();
 ```
