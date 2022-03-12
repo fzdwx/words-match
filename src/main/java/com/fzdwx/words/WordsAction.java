@@ -114,10 +114,7 @@ public class WordsAction {
     public String highlightOne(String hintWord, String template) {
         this.init();
         String content = this.content;
-        if (!matchHintWords.contains(hintWord)) {
-            return content;
-        }
-        return content.replaceAll(hintWord, String.format(template, hintWord));
+        return StringUtils.replace(content, hintWord, String.format(template, hintWord));
     }
 
     /**
@@ -153,26 +150,6 @@ public class WordsAction {
      */
     public String rawContent() {
         return this.content;
-    }
-
-    /**
-     * 敏感词对应命中的内容
-     *
-     * @return {@link Collection<String> }
-     */
-    public Collection<String> matchHintWords() {
-        this.init();
-        return this.matchHintWords;
-    }
-
-    /**
-     * 当前content 命中的敏感词
-     *
-     * @return {@link Collection<String> }
-     */
-    public Collection<String> sensitiveWords() {
-        this.init();
-        return this.sensitiveWords;
     }
 
     private void init() {
