@@ -37,7 +37,6 @@ public interface WordsMatcher {
         return FuzzWordsMatcher.create(words);
     }
 
-
     static WordsMatcher mixed(final Collection<String> words) {
         return MixWordsMatcher.create(words);
     }
@@ -71,6 +70,13 @@ public interface WordsMatcher {
      * @param words 新敏感词组
      */
     WordsMatcher refresh(Collection<String> words);
+
+    /**
+     * 是否存在违禁词
+     *
+     * @return boolean
+     */
+    boolean hasWords();
 
     /**
      * 细粒度

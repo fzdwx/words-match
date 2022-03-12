@@ -1,8 +1,8 @@
 package com.fzdwx.words.internal.dfa;
 
 
-import com.fzdwx.words.WordsMatcher;
 import com.fzdwx.lambada.Tuple;
+import com.fzdwx.words.WordsMatcher;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
@@ -25,17 +25,8 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
         words.forEach(this::put);
     }
 
-    private AccurateWordsMatcher(final String words) {
-        this.nodes = new HashMap<>();
-        this.put(words);
-    }
-
     public static WordsMatcher create(final Collection<String> words) {
         return new AccurateWordsMatcher(words);
-    }
-
-    public static WordsMatcher create(final String word) {
-        return new AccurateWordsMatcher(word);
     }
 
     @Override
@@ -121,8 +112,16 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
     @Override
     public WordsMatcher refresh(final Collection<String> words) {
         this.nodes.clear();
-        words.forEach(this::put);
+
+        if (words != null) {
+            words.forEach(this::put);
+        }
 
         return this;
+    }
+
+    @Override
+    public boolean hasWords() {
+        return this.nodes != null && this.nodes.size() > 0;
     }
 }

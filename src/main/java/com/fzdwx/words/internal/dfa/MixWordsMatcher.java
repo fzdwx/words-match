@@ -1,9 +1,10 @@
 package com.fzdwx.words.internal.dfa;
 
-import com.fzdwx.words.WordsMatcher;
-import com.fzdwx.lambada.internal.Tuple2;
 import com.fzdwx.lambada.Seq;
+import com.fzdwx.lambada.internal.Tuple2;
+import com.fzdwx.words.WordsMatcher;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -77,20 +78,28 @@ public class MixWordsMatcher implements DFAWordsMatcher {
         if (v1.size() > 0) {
             this.accurate = WordsMatcher.accurate(v1);
         } else {
-            this.accurate = null;
+            this.accurate = accurate.refresh(v1);
         }
 
         final List<String> v2 = tuple.v2;
         if (v2.size() > 0) {
             this.fuzz = WordsMatcher.fuzz(v2);
         } else {
-            this.fuzz = null;
+            this.fuzz = fuzz.refresh(v1);
         }
 
         return this;
     }
 
+    @Override
+    public boolean hasWords() {
+        return (this.accurate.hasWords() || this.fuzz.hasWords());
+    }
+
     private Tuple2<List<String>, List<String>> divert(final Collection<String> words) {
+        if (words == null) {
+            return new Tuple2<>(new ArrayList<>(), new ArrayList<>());
+        }
         return Seq.of(words).collect(this::hasChAndEn);
     }
 }

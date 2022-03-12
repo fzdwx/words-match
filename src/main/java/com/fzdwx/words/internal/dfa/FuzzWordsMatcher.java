@@ -155,9 +155,17 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     public WordsMatcher refresh(final Collection<String> words) {
         this.zhNodes.clear();
         this.enNodes.clear();
-        words.forEach(this::put);
+
+        if (words != null) {
+            words.forEach(this::put);
+        }
 
         return this;
+    }
+
+    @Override
+    public boolean hasWords() {
+        return (this.zhNodes != null && this.zhNodes.size() > 0) || (this.enNodes != null && this.enNodes.size() > 0);
     }
 
     private DfaNode getNode(final char firstChar) {
