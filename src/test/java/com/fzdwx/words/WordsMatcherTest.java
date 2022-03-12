@@ -73,6 +73,17 @@ class WordsMatcherTest {
     }
 
     @Test
+    void testHasWord() {
+        Assertions.assertTrue(this.mixed.hasWords());
+        Assertions.assertTrue(this.fuzz.hasWords());
+        Assertions.assertTrue(this.accurate.hasWords());
+
+        Assertions.assertFalse(this.mixed.refresh(null).hasWords());
+        Assertions.assertFalse(this.fuzz.refresh(null).hasWords());
+        Assertions.assertFalse(this.accurate.refresh(null).hasWords());
+    }
+
+    @Test
     @DisplayName("测试替换方法")
     void testReplace2() {
         //  stringUtil replace 不能替换带*的字符
