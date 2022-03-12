@@ -79,7 +79,7 @@ public class WordsAction {
             content = content.replaceAll(word, Strings.repeat(String.valueOf(replaceChar), word.length()));
         }
 
-        return this.content;
+        return content;
     }
 
 

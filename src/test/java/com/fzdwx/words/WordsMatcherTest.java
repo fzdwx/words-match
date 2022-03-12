@@ -40,10 +40,34 @@ class WordsMatcherTest {
     final WordsMatcher mixed = WordsMatcher.mixed(words);
 
     @Test
+    void testActionFast() {
+        final WordsAction action = fuzz.actionFast(content);
+        Assertions.assertTrue(action.match());
+    }
+
+    @Test
+    void testReplace() {
+        final WordsAction action = mixed.action(content);
+        final String replace = action.replace('草');
+
+        System.out.println(action.findAll());
+        System.out.println(replace);
+    }
+
+    @Test
+    void testRefresh() {
+        mixed.refresh(words);
+        final WordsAction action = mixed.action(content);
+        final Map<String, String> all = action.findAll();
+        this.assertAccurate(all, action);
+        this.assertFuzz(all, action);
+    }
+
+    @Test
     void testAccurate() {
         final WordsAction action = this.accurate.action(this.content);
         final Map<String, String> all = action.findAll();
-        this.assertAccurate(all);
+        this.assertAccurate(all, action);
     }
 
     @Test
@@ -51,8 +75,8 @@ class WordsMatcherTest {
         final WordsAction action = this.mixed.action(this.content);
 
         final Map<String, String> all = action.findAll();
-        this.assertAccurate(all);
-        this.assertFuzz(all);
+        this.assertAccurate(all, action);
+        this.assertFuzz(all, action);
     }
 
     @Test
@@ -66,15 +90,17 @@ class WordsMatcherTest {
     void testFuzz() {
         final WordsAction action = this.fuzz.action(this.content);
         final Map<String, String> all = action.findAll();
-        this.assertFuzz(all);
+        this.assertFuzz(all, action);
     }
 
-    private void assertAccurate(final Map<String, String> all) {
+    private void assertAccurate(final Map<String, String> all, WordsAction action) {
         Assertions.assertTrue(all.containsKey("你好aa"));
         Assertions.assertTrue(all.containsKey("zzz"));
+        Assertions.assertTrue(action.match());
     }
 
-    private void assertFuzz(final Map<String, String> all) {
+    private void assertFuzz(final Map<String, String> all, WordsAction action) {
+        Assertions.assertTrue(action.match());
         Assertions.assertTrue(all.containsKey("一举"));
         Assertions.assertTrue(all.containsKey("中国人"));
         Assertions.assertTrue(all.containsKey("zzz"));
