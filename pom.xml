@@ -19,13 +19,9 @@
         <arguments/>
     </properties>
 
-    <description>
-        A simple word matching program.
-    </description>
-
-    <url>
-        https://github.com/fzdwx/words-match
-    </url>
+    <description>A simple word matching program.</description>
+    <url>https://github.com/fzdwx/words-match</url>
+    <name>words-match</name>
 
     <dependencyManagement>
         <dependencies>
