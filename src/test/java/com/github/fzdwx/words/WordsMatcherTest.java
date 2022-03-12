@@ -1,4 +1,4 @@
-package com.fzdwx.words;
+package com.github.fzdwx.words;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -44,6 +44,14 @@ class WordsMatcherTest {
     void testActionFast() {
         final WordsAction action = fuzz.actionFast(content);
         Assertions.assertTrue(action.match());
+    }
+
+
+    @Test
+    void testFuzzFindAll() {
+        final WordsAction action = WordsMatcher.fuzz("fuck").action("fuc12312k");
+
+        Assertions.assertTrue(action.findAll().containsKey("fuck"));
     }
 
     @Test

@@ -1,6 +1,6 @@
-package com.fzdwx.lambada;
+package com.github.fzdwx.lambada;
 
-import com.fzdwx.lambada.internal.Tuple2;
+import com.github.fzdwx.lambada.internal.Tuple2;
 
 /**
  * @author <a href="mailto:likelovec@gmail.com">韦朕</a>

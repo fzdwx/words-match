@@ -1,6 +1,6 @@
-package com.fzdwx.lambada.internal;
+package com.github.fzdwx.lambada.internal;
 
-import com.fzdwx.lambada.Tuple;
+import com.github.fzdwx.lambada.Tuple;
 
 /**
  *

@@ -1,4 +1,4 @@
-package com.fzdwx.words;
+package com.github.fzdwx.words;
 
 import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;

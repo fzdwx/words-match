@@ -1,7 +1,7 @@
-package com.fzdwx.lambada;
+package com.github.fzdwx.lambada;
 
-import com.fzdwx.lambada.internal.SeqImpl;
-import com.fzdwx.lambada.internal.Tuple2;
+import com.github.fzdwx.lambada.internal.SeqImpl;
+import com.github.fzdwx.lambada.internal.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Collection;

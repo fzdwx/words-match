@@ -1,8 +1,8 @@
-package com.fzdwx.words.internal.dfa;
+package com.github.fzdwx.words.internal.dfa;
 
-import com.fzdwx.lambada.Seq;
-import com.fzdwx.lambada.internal.Tuple2;
-import com.fzdwx.words.WordsMatcher;
+import com.github.fzdwx.lambada.Seq;
+import com.github.fzdwx.lambada.internal.Tuple2;
+import com.github.fzdwx.words.WordsMatcher;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,7 +43,7 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public boolean process(final boolean partMatch, final String content, final Handler handle) {
+    public boolean process(final boolean partMatch, final String content, final WordsMatcher.Handler handle) {
         boolean processor = false;
         if (this.accurate != null) {
             processor = this.accurate.process(partMatch, content, handle);
