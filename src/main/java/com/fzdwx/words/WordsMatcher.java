@@ -1,10 +1,10 @@
 package com.fzdwx.words;
 
 
+import com.fzdwx.lambada.internal.Tuple2;
 import com.fzdwx.words.internal.dfa.AccurateWordsMatcher;
 import com.fzdwx.words.internal.dfa.FuzzWordsMatcher;
 import com.fzdwx.words.internal.dfa.MixWordsMatcher;
-import com.fzdwx.lambada.internal.Tuple2;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -29,10 +29,6 @@ public interface WordsMatcher {
         return AccurateWordsMatcher.create(Arrays.asList(words));
     }
 
-    static WordsMatcher accurate(final String word) {
-        return AccurateWordsMatcher.create(word);
-    }
-
     static WordsMatcher fuzz(String... words) {
         return FuzzWordsMatcher.create(Arrays.asList(words));
     }
@@ -41,9 +37,6 @@ public interface WordsMatcher {
         return FuzzWordsMatcher.create(words);
     }
 
-    static WordsMatcher fuzz(final String word) {
-        return FuzzWordsMatcher.create(word);
-    }
 
     static WordsMatcher mixed(final Collection<String> words) {
         return MixWordsMatcher.create(words);
@@ -130,6 +123,8 @@ public interface WordsMatcher {
     }
 
     default boolean hasChAndEn(final String word) {
+        if (word == null) return false;
+
         boolean havaCh = false;
         boolean havaEn = false;
         for (final char c : word.toCharArray()) {
