@@ -19,6 +19,14 @@
         <arguments/>
     </properties>
 
+    <description>
+        A simple word matching program.
+    </description>
+
+    <url>
+        https://github.com/fzdwx/words-match
+    </url>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -103,6 +111,14 @@
                         <additionalJOption>-Xdoclint:none</additionalJOption>
                     </additionalJOptions>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
