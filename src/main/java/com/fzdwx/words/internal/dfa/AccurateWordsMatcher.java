@@ -2,7 +2,7 @@ package com.fzdwx.words.internal.dfa;
 
 
 import com.fzdwx.words.WordsMatcher;
-import com.fzdwx.words.lambada.Tuple;
+import com.fzdwx.lambada.Tuple;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;

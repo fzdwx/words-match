@@ -1,6 +1,6 @@
-package com.fzdwx.words.lambada.internal;
+package com.fzdwx.lambada.internal;
 
-import com.fzdwx.words.lambada.Tuple;
+import com.fzdwx.lambada.Tuple;
 
 /**
  *

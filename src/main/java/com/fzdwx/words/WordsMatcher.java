@@ -4,7 +4,7 @@ package com.fzdwx.words;
 import com.fzdwx.words.internal.dfa.AccurateWordsMatcher;
 import com.fzdwx.words.internal.dfa.FuzzWordsMatcher;
 import com.fzdwx.words.internal.dfa.MixWordsMatcher;
-import com.fzdwx.words.lambada.internal.Tuple2;
+import com.fzdwx.lambada.internal.Tuple2;
 
 import java.util.Arrays;
 import java.util.Collection;

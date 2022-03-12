@@ -47,6 +47,14 @@ class WordsMatcherTest {
     }
 
     @Test
+    void testPut() {
+        final WordsAction a2 = fuzz.action("我我我我草你的");
+        Assertions.assertFalse(a2.match());
+        Assertions.assertTrue(fuzz.put("我草你的"));
+        Assertions.assertTrue(a2.match());
+    }
+
+    @Test
     void testReplace() {
         final WordsMatcher fuzz = WordsMatcher.fuzz(
                 "中国人"
