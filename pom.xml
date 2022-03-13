@@ -19,10 +19,6 @@
         <arguments/>
     </properties>
 
-    <description>A simple word matching program.</description>
-    <url>https://github.com/fzdwx/words-match</url>
-    <name>words-match</name>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -72,6 +68,9 @@
             <name>fzdwx</name>
             <email>likelovec@gmail.com</email>
             <organization>personal</organization>
+            <roles>
+                <role>owner</role>
+            </roles>
         </developer>
     </developers>
 
