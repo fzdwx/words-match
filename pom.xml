@@ -68,7 +68,6 @@
     </developers>
 
     <scm>
-        <tag>master</tag>
         <url>https://github.com/fzdwx/words-match</url>
         <connection>scm:git:https://github.com/fzdwx/words-match.git</connection>
         <developerConnection>scm:git:https://github.com/fzdwx/words-match.git</developerConnection>
