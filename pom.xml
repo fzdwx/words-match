@@ -12,9 +12,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <guava.version>31.0.1-jre</guava.version>
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-
         <junit.version>5.8.2</junit.version>
         <arguments/>
         <fzdwx.lambda.version>0.04</fzdwx.lambda.version>
@@ -45,15 +42,9 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
-    <description>a words match.</description>
+    <description>A simple word matching program.</description>
     <url>https://github.com/fzdwx/words-match</url>
     <name>words-match</name>
 
