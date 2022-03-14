@@ -6,7 +6,7 @@
 
     <groupId>io.github.fzdwx</groupId>
     <artifactId>words-match</artifactId>
-    <version>0.01</version>
+    <version>0.02</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,10 +17,16 @@
 
         <junit.version>5.8.2</junit.version>
         <arguments/>
+        <fzdwx.lambda.version>0.01</fzdwx.lambda.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.github.fzdwx</groupId>
+                <artifactId>lambda</artifactId>
+                <version>${fzdwx.lambda.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
@@ -42,6 +48,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.github.fzdwx</groupId>
+            <artifactId>lambda</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
@@ -54,6 +64,10 @@
             <artifactId>junit-jupiter</artifactId>
         </dependency>
     </dependencies>
+
+    <description>a words match.</description>
+    <url>https://github.com/fzdwx/words-match</url>
+    <name>words-match</name>
 
     <licenses>
         <license>
