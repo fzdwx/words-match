@@ -37,7 +37,7 @@ word: qweFJAKf
 <dependency>
   <groupId>io.github.fzdwx</groupId>
   <artifactId>words-match</artifactId>
-  <version>0.01</version>
+  <version>0.04</version>
 </dependency>
 ```
 
