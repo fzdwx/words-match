@@ -33,6 +33,15 @@ word: qweFJAKf
 
 ## usage
 
+```xml
+<dependency>
+  <groupId>io.github.fzdwx</groupId>
+  <artifactId>words-match</artifactId>
+  <version>0.01</version>
+</dependency>
+```
+
+code
 ```java
   private static Collection<String> words=new HashSet<String>(){
         {
