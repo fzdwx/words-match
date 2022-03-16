@@ -1,6 +1,6 @@
 package io.github.fzdwx.words.internal.dfa;
 
-import io.github.fzdwx.lambada.Seq;
+import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.internal.Tuple2;
 import io.github.fzdwx.words.WordsMatcher;
 
@@ -100,6 +100,31 @@ public class MixWordsMatcher implements DFAWordsMatcher {
         if (words == null) {
             return new Tuple2<>(new ArrayList<>(), new ArrayList<>());
         }
-        return Seq.of(words).collect(this::hasChAndEn);
+
+        final ArrayList<String> ac = new ArrayList<>();
+        final ArrayList<String> fuzz = new ArrayList<>();
+        for (final String word : words) {
+
+            int chCount = 0;
+            int enCount = 0;
+            final char[] chars = word.toCharArray();
+            for (final char c : chars) {
+                if (isChinese(c)) {
+                    chCount++;
+                }
+
+                if (isLetter(c)) {
+                    enCount++;
+                }
+            }
+
+            if (chars.length == chCount || chars.length == enCount) {
+                fuzz.add(word);
+                continue;
+            }
+
+            ac.add(word);
+        }
+        return Tuple.of(ac, fuzz);
     }
 }

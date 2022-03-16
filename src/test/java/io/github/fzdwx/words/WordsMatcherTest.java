@@ -63,6 +63,38 @@ class WordsMatcherTest {
     }
 
     @Test
+    void test_4() {
+        final WordsMatcher mixed = WordsMatcher.mixed("66");
+        final WordsAction action = mixed.action("恭喜发财，红包拿来！！！老铁们，aa666啊！！！快一点儿啊，等得花儿都谢了！！！3组（呵呵）呵呵呵呵呵呵！！！");
+        final Map<String, String> map = action.findAll();
+        Assertions.assertTrue(map.containsKey("66"));
+    }
+
+    @Test
+    void test_5() {
+        final WordsMatcher mixed = WordsMatcher.mixed("66啊");
+        final WordsAction action = mixed.action("恭喜发财，红包拿来！！！老铁们，aa666啊！！！快一点儿啊，等得花儿都谢了！！！3组（呵呵）呵呵呵呵呵呵！！！");
+        final Map<String, String> map = action.findAll();
+        Assertions.assertTrue(map.containsKey("66啊"));
+    }
+
+    @Test
+    void test_6() {
+        final WordsMatcher mixed = WordsMatcher.mixed("aa66bb");
+        final WordsAction action = mixed.action("恭喜发财，红包拿来！！！老铁们，aa66bb啊！！！快一点儿啊，等得花儿都谢了！！！3组（呵呵）呵呵呵呵呵呵！！！");
+        final Map<String, String> map = action.findAll();
+        Assertions.assertTrue(map.containsKey("aa66bb"));
+    }
+
+    @Test
+    void test_7() {
+        final WordsMatcher mixed = WordsMatcher.mixed("66bb");
+        final WordsAction action = mixed.action("恭喜发财，红包拿来！！！老铁们，aa66bb啊！！！快一点儿啊，等得花儿都谢了！！！3组（呵呵）呵呵呵呵呵呵！！！");
+        final Map<String, String> map = action.findAll();
+        Assertions.assertTrue(map.containsKey("66bb"));
+    }
+
+    @Test
     void testActionFast() {
         final WordsAction action = fuzz.actionFast(content);
         Assertions.assertTrue(action.match());
@@ -149,13 +181,6 @@ class WordsMatcherTest {
         final Map<String, String> all = action.findAll();
         this.assertAccurate(all, action);
         this.assertFuzz(all, action);
-    }
-
-    @Test
-    void testHasChAndEn() {
-        Assertions.assertTrue(this.fuzz.hasChAndEn("qwe你好"));
-        Assertions.assertFalse(this.fuzz.hasChAndEn("qwe"));
-        Assertions.assertFalse(this.fuzz.hasChAndEn("你好"));
     }
 
     @Test

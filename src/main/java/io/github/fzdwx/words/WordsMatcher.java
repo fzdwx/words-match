@@ -129,28 +129,6 @@ public interface WordsMatcher {
         return isLetterUpper(ch) || isLetterLower(ch);
     }
 
-    default boolean hasChAndEn(final String word) {
-        if (word == null) return false;
-
-        boolean havaCh = false;
-        boolean havaEn = false;
-        for (final char c : word.toCharArray()) {
-            if (this.isLetterOrNumber(c)) {
-                havaEn = true;
-            }
-
-            if (this.isBlankChar(c)) {
-                havaEn = true;
-            }
-
-            if (this.isChinese(c)) {
-                havaCh = true;
-            }
-        }
-
-        return havaCh && havaEn;
-    }
-
     default boolean isLetterOrNumber(char c) {
         return CharUtil.isLetterOrNumber(c);
     }
@@ -169,6 +147,24 @@ public interface WordsMatcher {
 
     static char toLowerCase(final char ch) {
         return Character.toLowerCase(ch);
+    }
+
+    default boolean hasChAndEn(String word) {
+        if (word== null) return false;
+
+        int chCount = 0;
+        int enCount = 0;
+        final char[] chars = word.toCharArray();
+        for (final char c : chars) {
+            if (isChinese(c)) {
+                chCount++;
+            }
+
+            if (isLetter(c)) {
+                enCount++;
+            }
+        }
+        return chCount > 0 && enCount > 0;
     }
 
     /**
