@@ -1,5 +1,6 @@
 package io.github.fzdwx.words;
 
+import cn.hutool.core.util.ReflectUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -112,13 +113,16 @@ class WordsMatcherTest {
         final WordsAction a2 = fuzz.action("我我我我草你的");
         Assertions.assertFalse(a2.match());
         Assertions.assertTrue(fuzz.put("我草你的"));
+        Assertions.assertFalse(fuzz.put("我"));
         Assertions.assertTrue(a2.match());
         Assertions.assertFalse(fuzz.put(null));
 
         Assertions.assertTrue(accurate.put("我草你的"));
+        Assertions.assertFalse(accurate.put("我"));
         Assertions.assertFalse(accurate.put(null));
 
         Assertions.assertTrue(mixed.put("我草你的"));
+        Assertions.assertFalse(mixed.put("我"));
         Assertions.assertFalse(mixed.put(null));
     }
 
