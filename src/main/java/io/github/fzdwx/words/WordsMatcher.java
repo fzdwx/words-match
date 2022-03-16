@@ -1,6 +1,7 @@
 package io.github.fzdwx.words;
 
 
+import cn.hutool.core.util.CharUtil;
 import io.github.fzdwx.lambada.internal.Tuple2;
 import io.github.fzdwx.words.internal.dfa.AccurateWordsMatcher;
 import io.github.fzdwx.words.internal.dfa.FuzzWordsMatcher;
@@ -134,15 +135,20 @@ public interface WordsMatcher {
         boolean havaCh = false;
         boolean havaEn = false;
         for (final char c : word.toCharArray()) {
-            if (this.isLetter(c)) {
+            if (this.isLetterOrNumber(c)) {
                 havaEn = true;
             }
+
             if (this.isChinese(c)) {
                 havaCh = true;
             }
         }
 
         return havaCh && havaEn;
+    }
+
+    default boolean isLetterOrNumber(char c) {
+        return CharUtil.isLetterOrNumber(c);
     }
 
     static boolean isLetterUpper(final char ch) {
