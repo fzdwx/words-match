@@ -56,11 +56,17 @@ class WordsMatcherTest {
     }
 
     @Test
+    void test_3() {
+        final WordsAction action = WordsMatcher.mixed("什么 什么").action("啊啊啊，123呀，红包拿来啊————啊啊啊123！什么 什么啊");
+        final Map<String, String> map = action.findAll();
+        Assertions.assertTrue(map.containsKey("什么 什么"));
+    }
+
+    @Test
     void testActionFast() {
         final WordsAction action = fuzz.actionFast(content);
         Assertions.assertTrue(action.match());
     }
-
 
     @Test
     void testFuzzFindAll() {

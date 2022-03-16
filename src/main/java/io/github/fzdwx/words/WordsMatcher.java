@@ -139,6 +139,10 @@ public interface WordsMatcher {
                 havaEn = true;
             }
 
+            if (this.isBlankChar(c)) {
+                havaEn = true;
+            }
+
             if (this.isChinese(c)) {
                 havaCh = true;
             }
@@ -157,6 +161,10 @@ public interface WordsMatcher {
 
     static boolean isLetterLower(final char ch) {
         return ch >= 'a' && ch <= 'z';
+    }
+
+    default boolean isBlankChar(final char ch) {
+        return CharUtil.isBlankChar(ch);
     }
 
     static char toLowerCase(final char ch) {
