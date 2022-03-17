@@ -1,6 +1,7 @@
 package io.github.fzdwx.words;
 
 import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.http.HttpUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,16 @@ class WordsMatcherTest {
         final WordsAction action = WordsMatcher.mixed("啊啊啊123").action("啊啊啊，123呀，红包拿来啊————啊啊啊123！");
         final Map<String, String> map = action.findAll();
         Assertions.assertTrue(map.containsKey("啊啊啊123"));
+    }
+
+    @Test
+    void test333() {
+         String url = "https://qyapi.weixin.qq.com/cgi-bin/msgaudit/groupchat/get?access_token=";
+        String token = "86tlhYqrMcbHbYuS3f2BYoMFfmWAruN39HXWPphdm_I9q-n2KeXRoVPDTG5MenoBhOfWVKw2Kz35QV0fbyGoEwu5Y3NiQ0AH6Wms5GMI8dLKbp5r-1-hlbqLRL6NLaRsUUArrtr7UPBqQC26HDyxcq1Ui0ZoVuaCqPteoKt3nkAYXUm73UUTQwNtnfiCVwU7L2V3Dttstkwass1_CmzAZA";
+        final String post = HttpUtil.post(url+token, "{\n" +
+                "\t\"roomid\":\"wr8ND4CgAAyxHliaJ5Jm3vFB9bMHwOAw\"\n" +
+                "}\n");
+        System.out.println(post);
     }
 
     @Test
