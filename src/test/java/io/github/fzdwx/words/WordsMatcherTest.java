@@ -1,6 +1,8 @@
 package io.github.fzdwx.words;
 
-import cn.hutool.core.util.ReflectUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.http.HttpUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,9 +62,9 @@ class WordsMatcherTest {
 
     @Test
     void test333() {
-         String url = "https://qyapi.weixin.qq.com/cgi-bin/msgaudit/groupchat/get?access_token=";
+        String url = "https://qyapi.weixin.qq.com/cgi-bin/msgaudit/groupchat/get?access_token=";
         String token = "86tlhYqrMcbHbYuS3f2BYoMFfmWAruN39HXWPphdm_I9q-n2KeXRoVPDTG5MenoBhOfWVKw2Kz35QV0fbyGoEwu5Y3NiQ0AH6Wms5GMI8dLKbp5r-1-hlbqLRL6NLaRsUUArrtr7UPBqQC26HDyxcq1Ui0ZoVuaCqPteoKt3nkAYXUm73UUTQwNtnfiCVwU7L2V3Dttstkwass1_CmzAZA";
-        final String post = HttpUtil.post(url+token, "{\n" +
+        final String post = HttpUtil.post(url + token, "{\n" +
                 "\t\"roomid\":\"wr8ND4CgAAyxHliaJ5Jm3vFB9bMHwOAw\"\n" +
                 "}\n");
         System.out.println(post);
@@ -171,6 +174,16 @@ class WordsMatcherTest {
         final String replace = action.replace('草');
 
         Assertions.assertTrue(replace.contains("草草草草草草草草"));
+    }
+
+    @Test
+    void test_3333333333() {
+        final List<String> strings = FileUtil.readLines("1.txt", CharsetUtil.UTF_8);
+        final WordsMatcher mixed = WordsMatcher.mixed(strings);
+        final WordsAction action = mixed.action("回归测试，，，1、大爷 2、尼达噎吗 3、傻帽 4、你老味吖 5、脑子进水了 6、我怎么听不懂你说的话，哦！听听，我家的猪在跟我说话了 7、哪儿凉快哪儿待着去 8、太阳从西边出来 9、母猪都会上树 10、驴见驴踢，猪见猪踩 11、左脸欠抽，右脸欠踹 12、姥姥不疼，舅舅不爱 13、你从小缺钙，长大缺爱 14、I don’t want to see your face 15、我不愿再见到你 16、You shouldn’t have done that 17、你真不应该那样做 18、Don’t talk to me like that 19、别那样和我说话 20、Who do you think you are 21、你以为你是谁 22、TMD 23、your mother fucking bull shit 24、一派胡言 25、Don’t give me your shoot 26、别跟我胡扯 27、Who says 28、谁说的 29、Fuck off 30、滚蛋 31、Drop dead 32、去死吧 33、You are out of your mind 34、你脑子有病 35、You have a lot of nerve 36、脸皮真厚 37、You stupid jerk! 38、你这蠢猪! 39、Shut up 40、闭嘴 41、对不起，敬个礼。放个P，送给你！！！ 42、出门踩到翔 43、loW（不区分大小写） 44、小人，真小人 45、猪狗不如 46、无语 47、蠢猪 48、呵呵 49、nishixiaogou 50、真狗 51、老子 52、滚粗 53、出门被车撞死， 54、喝水被.呛死， 55、吃饭被1噎死， 56、给你个大嘴巴子（后面没有了，没有了，没有了...）游泳被水撑死，回家楼塌被石头压死，下雨出门被雷劈死，玩电脑漏电被点死，去看大象被踩死，去买狗被狗咬死，去买猫被猫抓死，去买兔子被拉的一身屎");
+        final Map<String, String> all = action.findAll();
+        final Collection<String> disjunction = CollUtil.disjunction(strings, all.keySet());
+        System.out.println(disjunction);
     }
 
     @Test
