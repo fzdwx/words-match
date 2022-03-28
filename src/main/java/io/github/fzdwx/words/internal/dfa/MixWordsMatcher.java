@@ -20,26 +20,34 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     private WordsMatcher accurate;
     private WordsMatcher fuzz;
 
-    private MixWordsMatcher(final Collection<String> words) {
-        final Tuple2<List<String>, List<String>> tuple = this.divert(words);
+    public MixWordsMatcher(final Tuple2<List<String>, List<String>> divert) {
+        this(divert.v1, divert.v2);
+    }
 
-        final List<String> v1 = tuple.v1;
-        if (v1.size() > 0) {
-            this.accurate = WordsMatcher.accurate(v1);
+    private MixWordsMatcher(final Collection<String> words) {
+        this(divert(words));
+    }
+
+    public MixWordsMatcher(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
+        if (accurateCollection.size() > 0) {
+            this.accurate = WordsMatcher.accurate(accurateCollection);
         } else {
             this.accurate = null;
         }
 
-        final List<String> v2 = tuple.v2;
-        if (v2.size() > 0) {
-            this.fuzz = WordsMatcher.fuzz(v2);
+        if (fuzzCollection.size() > 0) {
+            this.fuzz = WordsMatcher.fuzz(fuzzCollection);
         } else {
             this.fuzz = null;
         }
     }
 
-    public static WordsMatcher create(final Collection<String> words) {
+    public static MixWordsMatcher create(final Collection<String> words) {
         return new MixWordsMatcher(words);
+    }
+
+    public static MixWordsMatcher create(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
+        return new MixWordsMatcher(accurateCollection, fuzzCollection);
     }
 
     @Override
@@ -71,21 +79,22 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public WordsMatcher refresh(final Collection<String> words) {
-        final Tuple2<List<String>, List<String>> tuple = this.divert(words);
+    public MixWordsMatcher refresh(final Collection<String> words) {
+        final Tuple2<List<String>, List<String>> tuple = divert(words);
+        return refresh(tuple.v1, tuple.v2);
+    }
 
-        final List<String> v1 = tuple.v1;
-        if (v1.size() > 0) {
-            this.accurate = WordsMatcher.accurate(v1);
+    public MixWordsMatcher refresh(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
+        if (this.accurate == null) {
+            this.accurate = WordsMatcher.accurate(accurateCollection);
         } else {
-            this.accurate = accurate.refresh(v1);
+            this.accurate = accurate.refresh(accurateCollection);
         }
 
-        final List<String> v2 = tuple.v2;
-        if (v2.size() > 0) {
-            this.fuzz = WordsMatcher.fuzz(v2);
+        if (this.fuzz == null) {
+            this.fuzz = WordsMatcher.fuzz(fuzzCollection);
         } else {
-            this.fuzz = fuzz.refresh(v1);
+            this.fuzz = fuzz.refresh(fuzzCollection);
         }
 
         return this;
@@ -96,7 +105,7 @@ public class MixWordsMatcher implements DFAWordsMatcher {
         return (this.accurate.hasWords() || this.fuzz.hasWords());
     }
 
-    private Tuple2<List<String>, List<String>> divert(final Collection<String> words) {
+    private static Tuple2<List<String>, List<String>> divert(final Collection<String> words) {
         if (words == null) {
             return new Tuple2<>(new ArrayList<>(), new ArrayList<>());
         }
@@ -109,11 +118,11 @@ public class MixWordsMatcher implements DFAWordsMatcher {
             int enCount = 0;
             final char[] chars = word.toCharArray();
             for (final char c : chars) {
-                if (isChinese(c)) {
+                if (WordsMatcher.isChinese(c)) {
                     chCount++;
                 }
 
-                if (isLetter(c)) {
+                if (WordsMatcher.isLetter(c)) {
                     enCount++;
                 }
             }

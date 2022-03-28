@@ -42,8 +42,12 @@ public interface WordsMatcher {
         return MixWordsMatcher.create(words);
     }
 
-    static WordsMatcher mixed(final String... words) {
+    static MixWordsMatcher mixed(final String... words) {
         return MixWordsMatcher.create(Arrays.asList(words));
+    }
+
+    static MixWordsMatcher mixed(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
+        return MixWordsMatcher.create(accurateCollection,fuzzCollection);
     }
 
     /**
@@ -105,7 +109,7 @@ public interface WordsMatcher {
      * @param c c
      * @return boolean
      */
-    default boolean isChinese(final char c) {
+    static boolean isChinese(final char c) {
         return c >= 0x4E00 && c <= 0x9FA5;// 根据字节码判断
     }
 
@@ -125,7 +129,7 @@ public interface WordsMatcher {
      * @param ch 被检查的字符
      * @return true表示为字母（包括大写字母和小写字母）字母包括A~Z和a~z
      */
-    default boolean isLetter(final char ch) {
+    static boolean isLetter(final char ch) {
         return isLetterUpper(ch) || isLetterLower(ch);
     }
 
@@ -150,7 +154,7 @@ public interface WordsMatcher {
     }
 
     default boolean hasChAndEn(String word) {
-        if (word== null) return false;
+        if (word == null) return false;
 
         int chCount = 0;
         int enCount = 0;

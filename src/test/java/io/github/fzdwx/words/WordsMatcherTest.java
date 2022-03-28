@@ -46,6 +46,46 @@ class WordsMatcherTest {
     final WordsMatcher mixed = WordsMatcher.mixed(words);
 
     @Test
+    void test_1111() {
+        final String word = "你好";
+        final String content = "你好啊";
+
+        Assertions.assertTrue(WordsMatcher.accurate(word).action(content).findAll().containsKey(word));
+        Assertions.assertTrue(WordsMatcher.fuzz(word).action(content).findAll().containsKey(word));
+    }
+
+    @Test
+    void test_222222() {
+        final String word = "你好吗";
+        final String content = "你好好吗";
+
+        Assertions.assertFalse(WordsMatcher.accurate(word).action(content).findAll().containsKey(word));
+        Assertions.assertFalse(WordsMatcher.fuzz(word).action(content).findAll().containsKey(word));
+    }
+
+    @Test
+    void test_33333() {
+        final String word = "你好吗";
+        final String content = "你好，吗";
+
+        Assertions.assertFalse(WordsMatcher.accurate(word).action(content).findAll().containsKey(word));
+        Assertions.assertTrue(WordsMatcher.fuzz(word).action(content).findAll().containsKey(word));
+    }
+
+    @Test
+    void test_44444() {
+        final String word = "helloworld";
+        final String content = "hello     world";
+
+        final WordsMatcher accurate = WordsMatcher.accurate(word);
+        final Map<String, String> all = accurate.action(content).findAll();
+        Assertions.assertFalse(all.containsKey(word));
+        final WordsMatcher fuzz = WordsMatcher.fuzz(word);
+        final Map<String, String> all1 = fuzz.action(content).findAll();
+        Assertions.assertTrue(all1.containsKey(word));
+    }
+
+    @Test
     void test_1() {
         final WordsAction action = WordsMatcher.mixed("红包", "啊啊").action("恭喜发财，红包拿来啊，什么.啊啊？？？");
         final Map<String, String> map = action.findAll();

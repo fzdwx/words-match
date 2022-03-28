@@ -1,47 +1,34 @@
 # words match
 
-字符串匹配,使用DFA算法实现.目前提供了两种匹配方式:
-
-1.精确匹配 [AccurateWordsMatcher](https://github.com/fzdwx/words-match/blob/f0b47ae55372566dc89995d7df5b8a5853d4774d/src/main/java/com/huofutp/words/internal/dfa/AccurateWordsMatcher.java)
-
-- content中的内容与word完全匹配
+字符串匹配,使用DFA算法实现,word不支持有空格.
 
 ```text
-word: hello
-    content: hello world -> true
-    content: HEllo world -> false
-word： 你好hello
-    content: 你好hello world -> true
-    content: 你好HEllo world -> false 
+word: 你好
+content: 你好啊
+模糊匹配: √
+精确匹配: √
 ```
 
-2.模糊匹配 [FuzzyWordsMatcher](https://github.com/fzdwx/words-match/blob/f0b47ae55372566dc89995d7df5b8a5853d4774d/src/main/java/com/huofutp/words/internal/dfa/FuzzWordsMatcher.java)
-
-- word只能为中文或英文
-- content不区分英文大小写
-
-```text
-word: hhhasd
-    content: h1...h1h1a1S1D -> true
-word: qweFJAKf
-    content: qWefJAkf -> true
-```
-
-3.[MixWordsMatcher](https://github.com/fzdwx/words-match/blob/f0b47ae55372566dc89995d7df5b8a5853d4774d/src/main/java/com/huofutp/words/internal/dfa/MixWordsMatcher.java)
-
-- 精确和模糊结合
+| -       |     |      |      |                 |
+|---------|-----|------|------|-----------------|
+| word    | 你好  | 你好吗  | 你好吗  | helloworld      |
+| content | 你好啊 | 你好好吗 | 你好，吗 | hello     world |
+| 模糊匹配    | √   | ×    | √    | √               |
+| 精确匹配    | √   | ×    | ×    | ×               |
 
 ## usage
 
 ```xml
+
 <dependency>
-  <groupId>io.github.fzdwx</groupId>
-  <artifactId>words-match</artifactId>
-  <version>0.08</version>
+    <groupId>io.github.fzdwx</groupId>
+    <artifactId>words-match</artifactId>
+    <version>0.09</version>
 </dependency>
 ```
 
 code
+
 ```java
   private static Collection<String> words=new HashSet<String>(){
         {
