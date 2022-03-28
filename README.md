@@ -52,7 +52,7 @@ final WordsAction action=this.accurate.action(this.content);
 final Map<String, String> all=action.findAll();
 ```
 
-[more](https://github.com/fzdwx/words-match/blob/master/src/test/java/com/fzdwx/words/WordsMatcherTest.java#L44)
+[more](https://github.com/fzdwx/words-match/blob/159c5dfe0a8c58b8db9e3bb69e3e24c7312a5b1e/src/test/java/io/github/fzdwx/words/WordsMatcherTest.java)
 
 ## todo
 
