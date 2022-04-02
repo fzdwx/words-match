@@ -65,7 +65,7 @@ public class MixWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public boolean put(final String word) {
-        if (this.hasChAndEn(word)) {
+        if (WordsMatcher.hasChAndEn(word)) {
             if (this.accurate == null) {
                 this.accurate = WordsMatcher.accurate(word);
             }

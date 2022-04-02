@@ -47,7 +47,7 @@ public interface WordsMatcher {
     }
 
     static MixWordsMatcher mixed(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
-        return MixWordsMatcher.create(accurateCollection,fuzzCollection);
+        return MixWordsMatcher.create(accurateCollection, fuzzCollection);
     }
 
     /**
@@ -153,7 +153,7 @@ public interface WordsMatcher {
         return Character.toLowerCase(ch);
     }
 
-    default boolean hasChAndEn(String word) {
+    static boolean hasChAndEn(String word) {
         if (word == null) return false;
 
         int chCount = 0;

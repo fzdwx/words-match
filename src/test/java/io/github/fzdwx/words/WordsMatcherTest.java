@@ -4,6 +4,8 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.http.HttpUtil;
+import io.github.fzdwx.lambada.Coll;
+import io.github.fzdwx.words.internal.dfa.MixWordsMatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -44,6 +46,19 @@ class WordsMatcherTest {
     final WordsMatcher fuzz = WordsMatcher.fuzz(words);
     final WordsMatcher accurate = WordsMatcher.accurate(words);
     final WordsMatcher mixed = WordsMatcher.mixed(words);
+
+    @Test
+    void test33333333() {
+        Assertions.assertTrue(WordsMatcher.hasChAndEn("s单"));
+        Assertions.assertTrue(WordsMatcher.hasChAndEn("s 单"));
+    }
+
+    @Test
+    void test() {
+        final MixWordsMatcher mix = WordsMatcher.mixed(Coll.list("123"), Coll.list("s单"));
+
+        System.out.println(mix.action("s单").findAll());
+    }
 
     @Test
     void test_1111() {
