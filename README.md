@@ -12,6 +12,7 @@
 ## Rule
 
 - 中英混合word: 精确匹配
+- word最小长度: 2
 
 ## usage
 

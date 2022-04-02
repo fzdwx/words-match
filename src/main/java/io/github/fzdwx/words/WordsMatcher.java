@@ -2,10 +2,12 @@ package io.github.fzdwx.words;
 
 
 import cn.hutool.core.util.CharUtil;
+import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.lambada.internal.Tuple2;
 import io.github.fzdwx.words.internal.dfa.AccurateWordsMatcher;
 import io.github.fzdwx.words.internal.dfa.FuzzWordsMatcher;
 import io.github.fzdwx.words.internal.dfa.MixWordsMatcher;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -51,6 +53,38 @@ public interface WordsMatcher {
     }
 
     /**
+     * @return {@link String } word
+     */
+    static State<String> isValidWord(String word) {
+        if (StringUtils.isEmpty(word)) {
+            return State.failure(new IllegalArgumentException("word is empty"));
+        }
+
+        word = StringUtils.trim(word);
+        if (word.length() < 2) { // 单字符不支持
+            return State.failure(new IllegalArgumentException("word length must be greater than 1"));
+        }
+
+        return State.success(word);
+    }
+
+    /**
+     * is valid word of fuzz.
+     */
+    static State<String> isValidFuzzWord(String word) {
+        final State<String> state = isValidWord(word);
+        if (state.isFailure()) {
+            return state;
+        }
+
+        if (WordsMatcher.hasChAndEn(word)) {
+            return state.setFail(new IllegalArgumentException("fuzz word must be chinese or english"));
+        }
+
+        return state;
+    }
+
+    /**
      * 判断一段文字包含敏感词语
      *
      * @param partMatch 部分匹配（粒度）
@@ -67,7 +101,7 @@ public interface WordsMatcher {
      * @param word 敏感词
      * @return boolean 是否添加成功
      */
-    boolean put(String word);
+    State<Void> put(String word);
 
     /**
      * 刷新

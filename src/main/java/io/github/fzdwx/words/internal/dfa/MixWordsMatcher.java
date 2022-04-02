@@ -1,6 +1,7 @@
 package io.github.fzdwx.words.internal.dfa;
 
 import io.github.fzdwx.lambada.Tuple;
+import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.lambada.internal.Tuple2;
 import io.github.fzdwx.words.WordsMatcher;
 
@@ -64,7 +65,7 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public boolean put(final String word) {
+    public State<Void> put(final String word) {
         if (WordsMatcher.hasChAndEn(word)) {
             if (this.accurate == null) {
                 this.accurate = WordsMatcher.accurate(word);

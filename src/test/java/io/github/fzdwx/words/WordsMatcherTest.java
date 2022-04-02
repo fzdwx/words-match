@@ -3,9 +3,6 @@ package io.github.fzdwx.words;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
-import cn.hutool.http.HttpUtil;
-import io.github.fzdwx.lambada.Coll;
-import io.github.fzdwx.words.internal.dfa.MixWordsMatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,9 +52,7 @@ class WordsMatcherTest {
 
     @Test
     void test() {
-        final MixWordsMatcher mix = WordsMatcher.mixed(Coll.list("123"), Coll.list("s单"));
-
-        System.out.println(mix.action("s单").findAll());
+        Assertions.assertFalse(WordsMatcher.isValidFuzzWord("s单").isSuccess());
     }
 
     @Test
@@ -116,16 +111,6 @@ class WordsMatcherTest {
     }
 
     @Test
-    void test333() {
-        String url = "https://qyapi.weixin.qq.com/cgi-bin/msgaudit/groupchat/get?access_token=";
-        String token = "86tlhYqrMcbHbYuS3f2BYoMFfmWAruN39HXWPphdm_I9q-n2KeXRoVPDTG5MenoBhOfWVKw2Kz35QV0fbyGoEwu5Y3NiQ0AH6Wms5GMI8dLKbp5r-1-hlbqLRL6NLaRsUUArrtr7UPBqQC26HDyxcq1Ui0ZoVuaCqPteoKt3nkAYXUm73UUTQwNtnfiCVwU7L2V3Dttstkwass1_CmzAZA";
-        final String post = HttpUtil.post(url + token, "{\n" +
-                "\t\"roomid\":\"wr8ND4CgAAyxHliaJ5Jm3vFB9bMHwOAw\"\n" +
-                "}\n");
-        System.out.println(post);
-    }
-
-    @Test
     void test_3() {
         final WordsAction action = WordsMatcher.mixed("什么 什么").action("啊啊啊，123呀，红包拿来啊————啊啊啊123！什么 什么啊");
         final Map<String, String> map = action.findAll();
@@ -181,18 +166,18 @@ class WordsMatcherTest {
     void testPut() {
         final WordsAction a2 = fuzz.action("我我我我草你的");
         Assertions.assertFalse(a2.match());
-        Assertions.assertTrue(fuzz.put("我草你的"));
-        Assertions.assertFalse(fuzz.put("我"));
+        Assertions.assertTrue(fuzz.put("我草你的").isSuccess());
+        Assertions.assertFalse(fuzz.put("我").isSuccess());
         Assertions.assertTrue(a2.match());
-        Assertions.assertFalse(fuzz.put(null));
+        Assertions.assertFalse(fuzz.put(null).isSuccess());
 
-        Assertions.assertTrue(accurate.put("我草你的"));
-        Assertions.assertFalse(accurate.put("我"));
-        Assertions.assertFalse(accurate.put(null));
+        Assertions.assertTrue(accurate.put("我草你的").isSuccess());
+        Assertions.assertFalse(accurate.put("我").isSuccess());
+        Assertions.assertFalse(accurate.put(null).isSuccess());
 
-        Assertions.assertTrue(mixed.put("我草你的"));
-        Assertions.assertFalse(mixed.put("我"));
-        Assertions.assertFalse(mixed.put(null));
+        Assertions.assertTrue(mixed.put("我草你的").isSuccess());
+        Assertions.assertFalse(mixed.put("我").isSuccess());
+        Assertions.assertFalse(mixed.put(null).isSuccess());
     }
 
     @Test

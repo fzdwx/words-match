@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
         <arguments/>
-        <lambda.version>0.08</lambda.version>
+        <lambda.version>0.09</lambda.version>
     </properties>
 
     <dependencyManagement>

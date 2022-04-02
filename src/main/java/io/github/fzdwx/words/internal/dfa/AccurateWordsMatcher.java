@@ -2,6 +2,7 @@ package io.github.fzdwx.words.internal.dfa;
 
 
 import io.github.fzdwx.lambada.Tuple;
+import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.words.WordsMatcher;
 import org.apache.commons.lang3.StringUtils;
 
@@ -87,15 +88,13 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public boolean put(String word) {
-        if (StringUtils.isEmpty(word)) {
-            return false;
+    public State<Void> put(String word) {
+        final State<String> state = WordsMatcher.isValidWord(word);
+        if (state.isFailure()) {
+            return state.setFail(state.cause());
         }
 
-        word = StringUtils.trim(word);
-        if (word.length() < 2) { // 单字符不支持
-            return false;
-        }
+        word = state.get();
 
         final char firstChar = word.charAt(0);
         DfaNode firstNode = this.nodes.get(firstChar);
@@ -106,7 +105,7 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
 
         firstNode.fillChildren(firstNode, word, DfaNode.DfaNodeType.normal);
 
-        return true;
+        return state.setSuccess();
     }
 
     @Override
