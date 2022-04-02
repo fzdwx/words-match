@@ -29,13 +29,13 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     public MixWordsMatcher(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
-        if (accurateCollection.size() > 0) {
+        if (accurateCollection!= null && accurateCollection.size() > 0) {
             this.accurate = WordsMatcher.accurate(accurateCollection);
         } else {
             this.accurate = null;
         }
 
-        if (fuzzCollection.size() > 0) {
+        if (fuzzCollection!= null && fuzzCollection.size() > 0) {
             this.fuzz = WordsMatcher.fuzz(fuzzCollection);
         } else {
             this.fuzz = null;
