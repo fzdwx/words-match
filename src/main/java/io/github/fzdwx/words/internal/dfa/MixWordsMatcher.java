@@ -30,13 +30,13 @@ public class MixWordsMatcher implements DFAWordsMatcher {
     }
 
     public MixWordsMatcher(final Collection<String> accurateCollection, final Collection<String> fuzzCollection) {
-        if (accurateCollection!= null && accurateCollection.size() > 0) {
+        if (accurateCollection != null && accurateCollection.size() > 0) {
             this.accurate = WordsMatcher.accurate(accurateCollection);
         } else {
             this.accurate = null;
         }
 
-        if (fuzzCollection!= null && fuzzCollection.size() > 0) {
+        if (fuzzCollection != null && fuzzCollection.size() > 0) {
             this.fuzz = WordsMatcher.fuzz(fuzzCollection);
         } else {
             this.fuzz = null;
@@ -66,6 +66,10 @@ public class MixWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public State<Void> put(final String word) {
+        final State<String> state = WordsMatcher.isValidFuzzWord(word);
+        if (state.isFailure()) {
+            return state.newFail();
+        }
         if (WordsMatcher.hasChAndEn(word)) {
             if (this.accurate == null) {
                 this.accurate = WordsMatcher.accurate(word);

@@ -91,7 +91,7 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
     public State<Void> put(String word) {
         final State<String> state = WordsMatcher.isValidWord(word);
         if (state.isFailure()) {
-            return state.setFail(state.cause());
+            return state.newFail();
         }
 
         word = state.get();
@@ -105,7 +105,7 @@ public class AccurateWordsMatcher implements DFAWordsMatcher {
 
         firstNode.fillChildren(firstNode, word, DfaNode.DfaNodeType.normal);
 
-        return state.setSuccess();
+        return state.newSuccess();
     }
 
     @Override

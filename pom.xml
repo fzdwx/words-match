@@ -6,7 +6,7 @@
 
     <groupId>io.github.fzdwx</groupId>
     <artifactId>words-match</artifactId>
-    <version>0.10</version>
+    <version>0.10.1</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
         <arguments/>
-        <lambda.version>0.09</lambda.version>
+        <lambda.version>0.09.1</lambda.version>
     </properties>
 
     <dependencyManagement>

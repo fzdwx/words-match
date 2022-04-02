@@ -123,7 +123,7 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     public State<Void> put(String word) {
         final State<String> state = WordsMatcher.isValidFuzzWord(word);
         if (state.isFailure()) {
-            return state.setFail(state.cause());
+            return state.newFail();
         }
 
         word = state.get();
@@ -145,9 +145,9 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
                 this.enNodes.put(firstChar, firstNode);
             }
             firstNode.fillChildren(firstNode, word, DfaNode.DfaNodeType.en);
-        } else return state.setFail(new IllegalArgumentException("not support char " + firstChar)); // 不支持的字符 只支持中文和英文
+        } else return state.newFail(new IllegalArgumentException("not support char " + firstChar)); // 不支持的字符 只支持中文和英文
 
-        return state.setSuccess();
+        return state.newSuccess();
     }
 
     @Override
