@@ -46,6 +46,21 @@ class WordsMatcherTest {
 
 
     @Test
+    void testNumber() {
+        String word = "123好";
+        String content = "123，，，，好";
+        final WordsMatcher fuzz = WordsMatcher.fuzz(word);
+        Assertions.assertEquals(fuzz.action(content).findAll().size(), 0);
+    }
+
+    @Test
+    void testNumber2() {
+        String word = "好123";
+        String content = "好,123";
+        System.out.println(WordsMatcher.isValidFuzzWord(word).isSuccess());
+    }
+
+    @Test
     void test244() {
         final String word = "我草 你好";
         System.out.println(WordsMatcher.isValidFuzzWord(word).isSuccess());

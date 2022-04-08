@@ -81,6 +81,12 @@ public interface WordsMatcher {
             return state.setFail(new IllegalArgumentException("fuzz word must not contain space"));
         }
 
+        for (final char c : word.toCharArray()) {
+            if(CharUtil.isNumber(c)){
+                return state.setFail(new IllegalArgumentException("fuzz word must not contain number"));
+            }
+        }
+
         if (WordsMatcher.hasChAndEn(word)) {
             return state.setFail(new IllegalArgumentException("fuzz word must be chinese or english"));
         }
