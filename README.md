@@ -23,7 +23,7 @@
 <dependency>
     <groupId>io.github.fzdwx</groupId>
     <artifactId>words-match</artifactId>
-    <version>0.09</version>
+    <version>0.10.2</version>
 </dependency>
 ```
 
