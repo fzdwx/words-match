@@ -77,6 +77,10 @@ public interface WordsMatcher {
             return state;
         }
 
+        if (word.contains(" ")) {
+            return state.setFail(new IllegalArgumentException("fuzz word must not contain space"));
+        }
+
         if (WordsMatcher.hasChAndEn(word)) {
             return state.setFail(new IllegalArgumentException("fuzz word must be chinese or english"));
         }

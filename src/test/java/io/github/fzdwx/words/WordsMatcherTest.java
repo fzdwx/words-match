@@ -44,6 +44,15 @@ class WordsMatcherTest {
     final WordsMatcher accurate = WordsMatcher.accurate(words);
     final WordsMatcher mixed = WordsMatcher.mixed(words);
 
+
+    @Test
+    void test244() {
+        final String word = "我草 你好";
+        System.out.println(WordsMatcher.isValidFuzzWord(word).isSuccess());
+        final WordsMatcher fuzz = WordsMatcher.accurate(word);
+        System.out.println(fuzz.action("我草 你好a").findAll());
+    }
+
     @Test
     void test33333333() {
         Assertions.assertTrue(WordsMatcher.hasChAndEn("s单"));
