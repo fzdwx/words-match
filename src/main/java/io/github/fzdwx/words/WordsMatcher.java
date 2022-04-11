@@ -87,6 +87,16 @@ public interface WordsMatcher {
             }
         }
 
+        if (word.contains(" ")) {
+            return state.setFail(new IllegalArgumentException("fuzz word must not contain space"));
+        }
+
+        for (final char c : word.toCharArray()) {
+            if (CharUtil.isNumber(c)) {
+                return state.setFail(new IllegalArgumentException("fuzz word must not contain number"));
+            }
+        }
+
         if (WordsMatcher.hasChAndEn(word)) {
             return state.setFail(new IllegalArgumentException("fuzz word must be chinese or english"));
         }
@@ -202,16 +212,22 @@ public interface WordsMatcher {
 
         int chCount = 0;
         int enCount = 0;
+        int otherCount = 0;
         final char[] chars = word.toCharArray();
         for (final char c : chars) {
             if (isChinese(c)) {
                 chCount++;
-            }
-
-            if (isLetter(c)) {
+            } else if (isLetter(c)) {
                 enCount++;
+            } else {
+                otherCount++;
             }
         }
+
+        if (otherCount > 0) {
+            return true;
+        }
+
         return chCount > 0 && enCount > 0;
     }
 
