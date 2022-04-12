@@ -24,23 +24,23 @@ import java.util.function.Function;
  */
 public interface WordsMatcher {
 
-    static WordsMatcher accurate(final Collection<String> words) {
+    static AccurateWordsMatcher accurate(final Collection<String> words) {
         return AccurateWordsMatcher.create(words);
     }
 
-    static WordsMatcher accurate(String... words) {
+    static AccurateWordsMatcher accurate(String... words) {
         return AccurateWordsMatcher.create(Arrays.asList(words));
     }
 
-    static WordsMatcher fuzz(String... words) {
+    static FuzzWordsMatcher fuzz(String... words) {
         return FuzzWordsMatcher.create(Arrays.asList(words));
     }
 
-    static WordsMatcher fuzz(final Collection<String> words) {
+    static FuzzWordsMatcher fuzz(final Collection<String> words) {
         return FuzzWordsMatcher.create(words);
     }
 
-    static WordsMatcher mixed(final Collection<String> words) {
+    static MixWordsMatcher mixed(final Collection<String> words) {
         return MixWordsMatcher.create(words);
     }
 

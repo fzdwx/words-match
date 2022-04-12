@@ -4,6 +4,7 @@ package io.github.fzdwx.words.internal.dfa;
 import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.words.WordsMatcher;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
@@ -24,10 +25,11 @@ import java.util.Map;
  *          he*l l.o   -> hello
  * </pre>
  */
+@NoArgsConstructor
 public class FuzzWordsMatcher implements DFAWordsMatcher {
 
-    private final Map<Character, DfaNode> zhNodes;
-    private final Map<Character, DfaNode> enNodes;
+    private Map<Character, DfaNode> zhNodes;
+    private Map<Character, DfaNode> enNodes;
 
     private FuzzWordsMatcher(final Collection<String> words) {
         this.zhNodes = new HashMap<>();
@@ -41,11 +43,11 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
         this.put(word);
     }
 
-    public static WordsMatcher create(final Collection<String> words) {
+    public static FuzzWordsMatcher create(final Collection<String> words) {
         return new FuzzWordsMatcher(words);
     }
 
-    public static WordsMatcher create(final String word) {
+    public static FuzzWordsMatcher create(final String word) {
         return new FuzzWordsMatcher(word);
     }
 

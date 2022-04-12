@@ -4,6 +4,7 @@ package io.github.fzdwx.words.internal.dfa;
 import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.words.WordsMatcher;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Collection;
@@ -17,16 +18,17 @@ import java.util.Map;
  * @apiNote DFA匹配器，精确匹配
  * @date 2022/3/10 15:22
  */
+@NoArgsConstructor
 public class AccurateWordsMatcher implements DFAWordsMatcher {
 
-    private final Map<Character, DfaNode> nodes;
+    private Map<Character, DfaNode> nodes;
 
     private AccurateWordsMatcher(final Collection<String> words) {
         this.nodes = new HashMap<>();
         words.forEach(this::put);
     }
 
-    public static WordsMatcher create(final Collection<String> words) {
+    public static AccurateWordsMatcher create(final Collection<String> words) {
         return new AccurateWordsMatcher(words);
     }
 

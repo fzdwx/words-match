@@ -4,6 +4,7 @@ import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.lambada.internal.Tuple2;
 import io.github.fzdwx.words.WordsMatcher;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,10 +17,11 @@ import java.util.List;
  * @apiNote 混合了精确和模糊匹配的词语匹配器
  * @date 2022/3/11 11:31
  */
+@NoArgsConstructor
 public class MixWordsMatcher implements DFAWordsMatcher {
 
-    private WordsMatcher accurate;
-    private WordsMatcher fuzz;
+    private AccurateWordsMatcher accurate;
+    private FuzzWordsMatcher fuzz;
 
     public MixWordsMatcher(final Tuple2<List<String>, List<String>> divert) {
         this(divert.v1, divert.v2);
