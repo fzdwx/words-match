@@ -153,7 +153,7 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     }
 
     @Override
-    public WordsMatcher refresh(final Collection<String> words) {
+    public FuzzWordsMatcher refresh(final Collection<String> words) {
         this.zhNodes.clear();
         this.enNodes.clear();
 
