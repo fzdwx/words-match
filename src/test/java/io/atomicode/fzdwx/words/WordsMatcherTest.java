@@ -1,8 +1,10 @@
-package org.atomicode.fzdwx.words;
+package io.atomicode.fzdwx.words;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.CharsetUtil;
+import io.github.fzdwx.words.WordsAction;
+import io.github.fzdwx.words.WordsMatcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

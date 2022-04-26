@@ -1,11 +1,11 @@
-package org.atomicode.fzdwx.words.internal.dfa;
+package io.github.fzdwx.words.internal.dfa;
 
 
 import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.fun.State;
+import io.github.fzdwx.words.WordsMatcher;
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
-import org.atomicode.fzdwx.words.WordsMatcher;
 
 import java.util.Collection;
 import java.util.HashMap;

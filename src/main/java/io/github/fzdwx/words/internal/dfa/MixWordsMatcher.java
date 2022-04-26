@@ -1,10 +1,10 @@
-package org.atomicode.fzdwx.words.internal.dfa;
+package io.github.fzdwx.words.internal.dfa;
 
 import io.github.fzdwx.lambada.Tuple;
 import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.lambada.internal.Tuple2;
+import io.github.fzdwx.words.WordsMatcher;
 import lombok.NoArgsConstructor;
-import org.atomicode.fzdwx.words.WordsMatcher;
 
 import java.util.ArrayList;
 import java.util.Collection;

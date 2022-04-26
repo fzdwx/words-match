@@ -1,13 +1,13 @@
-package org.atomicode.fzdwx.words;
+package io.github.fzdwx.words;
 
 
 import cn.hutool.core.util.CharUtil;
 import io.github.fzdwx.lambada.fun.State;
 import io.github.fzdwx.lambada.internal.Tuple2;
+import io.github.fzdwx.words.internal.dfa.AccurateWordsMatcher;
+import io.github.fzdwx.words.internal.dfa.FuzzWordsMatcher;
+import io.github.fzdwx.words.internal.dfa.MixWordsMatcher;
 import org.apache.commons.lang3.StringUtils;
-import org.atomicode.fzdwx.words.internal.dfa.AccurateWordsMatcher;
-import org.atomicode.fzdwx.words.internal.dfa.FuzzWordsMatcher;
-import org.atomicode.fzdwx.words.internal.dfa.MixWordsMatcher;
 
 import java.util.Arrays;
 import java.util.Collection;
