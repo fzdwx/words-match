@@ -78,16 +78,16 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
                 char wordChar = content.charAt(i);
 
                 if ((node.type() == DfaNode.DfaNodeType.zh) || (WordsMatcher.isChinese(node.getChar()))) {
-                    if (!isChinese(wordChar)) { // 只匹配中文
+                    if (!WordsMatcher.isChinese(wordChar)) { // 只匹配中文
                         charCount++;
                         continue;
                     } // todo 简繁体？
-                } else if ((node.type() == DfaNode.DfaNodeType.en) || (isLetter(node.getChar()))) {
-                    if (!isLetter(wordChar)) { // 只匹配英文 其他字符不匹配
+                } else if ((node.type() == DfaNode.DfaNodeType.en) || (WordsMatcher.isLetter(node.getChar()))) {
+                    if (!WordsMatcher.isLetter(wordChar)) { // 只匹配英文 其他字符不匹配
                         charCount++;
                         continue;
                     } else // 英文全部小写
-                        wordChar = toLowerCase(wordChar);
+                        wordChar = WordsMatcher.toLowerCase(wordChar);
                 }
 
                 node = node.getChildes().get(wordChar);
@@ -123,7 +123,7 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
 
     @Override
     public State<Void> put(String word) {
-        final State<String> state = isValidFuzzWord(word);
+        final State<String> state = WordsMatcher.isValidFuzzWord(word);
         if (state.isFailure()) {
             return state.newFail();
         }
@@ -132,15 +132,15 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
 
         char firstChar = word.charAt(0);
 
-        if (isChinese(firstChar)) {
+        if (WordsMatcher.isChinese(firstChar)) {
             DfaNode firstNode = this.zhNodes.get(firstChar);
             if (firstNode == null) {
                 firstNode = new DfaNode(firstChar, DfaNode.DfaNodeType.zh);
                 this.zhNodes.put(firstChar, firstNode);
             }
             firstNode.fillChildren(firstNode, word, DfaNode.DfaNodeType.zh);
-        } else if (isLetter(firstChar)) {
-            firstChar = toLowerCase(firstChar);
+        } else if (WordsMatcher.isLetter(firstChar)) {
+            firstChar = WordsMatcher.toLowerCase(firstChar);
             DfaNode firstNode = this.enNodes.get(firstChar);
             if (firstNode == null) {
                 firstNode = new DfaNode(firstChar, DfaNode.DfaNodeType.en);
@@ -170,11 +170,11 @@ public class FuzzWordsMatcher implements DFAWordsMatcher {
     }
 
     private DfaNode getNode(final char firstChar) {
-        if (isLetter(firstChar)) {
+        if (WordsMatcher.isLetter(firstChar)) {
             // 英文统一转小写
-            final char c = toLowerCase(firstChar);
+            final char c = WordsMatcher.toLowerCase(firstChar);
             return this.enNodes.get(c);
-        } else if (isChinese(firstChar)) {
+        } else if (WordsMatcher.isChinese(firstChar)) {
             // todo 简繁体？
             return this.zhNodes.get(firstChar);
         }
