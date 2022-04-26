@@ -1,6 +1,6 @@
-package io.github.fzdwx.words.internal.dfa;
+package org.atomicode.fzdwx.words.internal.dfa;
 
-import io.github.fzdwx.words.WordsMatcher;
+import org.atomicode.fzdwx.words.WordsMatcher;
 
 import java.util.HashMap;
 import java.util.Map;

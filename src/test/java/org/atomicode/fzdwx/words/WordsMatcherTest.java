@@ -1,4 +1,4 @@
-package io.github.fzdwx.words;
+package org.atomicode.fzdwx.words;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.io.FileUtil;

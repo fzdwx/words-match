@@ -1,4 +1,4 @@
-package io.github.fzdwx.words;
+package org.atomicode.fzdwx.words;
 
 import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
