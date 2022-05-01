@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * 精确词语匹配器
  *
- * @author <a href="mailto:likelovec@gmail.com">韦朕</a>
+ * @author <a href="mailto:likelovec@gmail.com">fzdwx</a>
  * @apiNote DFA匹配器，精确匹配
  * @date 2022/3/10 15:22
  */

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author <a href="mailto:likelovec@gmail.com">韦朕</a>
+ * @author <a href="mailto:likelovec@gmail.com">fzdwx</a>
  * @date 2022/3/11 12:18
  */
 public interface DFAWordsMatcher extends WordsMatcher {
@@ -15,7 +15,7 @@ public interface DFAWordsMatcher extends WordsMatcher {
     /**
      * dfa节点
      *
-     * @author <a href="mailto:likelovec@gmail.com">韦朕</a>
+     * @author <a href="mailto:likelovec@gmail.com">fzdwx</a>
      * @date 2022/03/10 15:25:31
      * @apiNote <pre>
      *     {@code

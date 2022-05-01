@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * mixed words matcher
  *
- * @author <a href="mailto:likelovec@gmail.com">韦朕</a>
+ * @author <a href="mailto:likelovec@gmail.com">fzdwx</a>
  * @apiNote 混合了精确和模糊匹配的词语匹配器
  * @date 2022/3/11 11:31
  */

@@ -14,7 +14,7 @@ import java.util.Collection;
 import java.util.function.Function;
 
 /**
- * @author <a href="mailto:likelovec@gmail.com">韦朕</a>
+ * @author <a href="mailto:likelovec@gmail.com">fzdwx</a>
  * @apiNote <pre>
  *     1.单字符不支持
  *     2.部分匹配是匹配到敏感词后立即退出当前匹配；而完整匹配会把所有词都匹配出来，也就是把敏感词中的小词也匹配到。
